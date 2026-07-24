@@ -9,7 +9,7 @@ function App() {
 
         {/* Logo */}
         <div className="logo">
-          <img src="/logo.png" alt="Bhramanam Logo" />
+          <img src="/भ्रमणम्2.png" alt="Bhramanam Logo" />
         </div>
 
         {/* Navigation Links */}
@@ -40,13 +40,13 @@ function App() {
       <section className="hero">
 
         <img
-          src="/hero.jpg"
+          src="/udaipur_hero.jpeg"
           alt="Beautiful Indian Destination"
           className="hero-image"
         />
 
         <div className="hero-text">
-          <h2>Explore India</h2>
+          <button className="explore-button">Explore India</button>
           <h1>Discover The Soul Of Bharat</h1>
         </div>
 
