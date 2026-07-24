@@ -46,7 +46,12 @@ function App() {
         />
 
         <div className="hero-text">
-          <button className="explore-button">Explore India</button>
+          <button 
+          className="explore-button"
+          onClick={() =>
+    document.getElementById("bharat-bhraman").scrollIntoView({
+        behavior: "smooth"})
+    }>Explore India</button>
           <h1>Discover The Soul Of Bharat</h1>
         </div>
 
@@ -70,7 +75,51 @@ function App() {
         </button>
 
       </section>
+<section id="bharat-bhraman" className="bharat-bhraman">
+  <h2>भारत भ्रमण</h2>
 
+  <p>
+    From the majestic Himalayas to the serene southern coasts,
+    <br />
+    discover destinations that tell the story of Bharat.
+  </p>
+
+  <div className="destination-grid">
+    <div className="destination-card">
+      <img src="/image/kashmir.png" alt="Kashmir" />
+      <p>Paradise in the North</p>
+    </div>
+
+    <div className="destination-card">
+      <img src="/image/rajsthan.png" alt="Rajasthan" />
+      <p>Royal Heritage & Culture</p>
+    </div>
+
+    <div className="destination-card">
+      <img src="/image/varanasi.png" alt="Varanasi" />
+      <p>The Spiritual Heart of India</p>
+    </div>
+
+    <div className="destination-card">
+      <img src="/image/gujrat.png" alt="Gujarat" />
+      <p>A Blend of Heritage & Vibrant Culture</p>
+    </div>
+
+    <div className="destination-card">
+      <img src="/image/kerala.png" alt="Kerala" />
+      <p>Nature, Backwaters & Serenity</p>
+    </div>
+
+    <div className="destination-card">
+      <img src="/image/goa.png" alt="Goa" />
+      <p>Beaches, Sunsets & Vibrant Vibes</p>
+    </div>
+  </div>
+
+  <button className="explore-all">
+    Explore all →
+  </button>
+</section>
     </div>
   )
 }
