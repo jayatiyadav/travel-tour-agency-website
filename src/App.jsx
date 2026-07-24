@@ -120,6 +120,109 @@ function App() {
     Explore all →
   </button>
 </section>
+{/* Popular Tours Section */}
+<section className="popular-tours">
+
+  <h2>Popular Tours</h2>
+
+  <p className="popular-tours-subtitle">
+    Explore India's most loved journeys
+  </p>
+
+  <div className="tour-grid">
+
+    {/* Kashmir Tour */}
+    <div className="tour-card">
+      <img
+        src="/image/kashmir_tour.jpg"
+        alt="Kashmir Paradise Tour"
+      />
+
+      <div className="tour-info">
+        <h3>Kashmir Paradise Tour</h3>
+
+        <p className="tour-duration">
+          🗓️ 6 Days / 5 Nights
+        </p>
+
+        <p>
+          Experience the breathtaking beauty of Kashmir,
+          from serene lakes to majestic mountains.
+        </p>
+
+        <div className="tour-bottom">
+          <span className="tour-price">₹25,000</span>
+
+          <button className="view-details">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    {/* Rajasthan Tour */}
+    <div className="tour-card">
+      <img
+        src="/image/rajsthan_tour.jpg"
+        alt="Royal Rajasthan Tour"
+      />
+
+      <div className="tour-info">
+        <h3>Royal Rajasthan Tour</h3>
+
+        <p className="tour-duration">
+          🗓️ 7 Days / 6 Nights
+        </p>
+
+        <p>
+          Discover royal palaces, magnificent forts,
+          vibrant culture and the golden desert.
+        </p>
+
+        <div className="tour-bottom">
+          <span className="tour-price">₹30,000</span>
+
+          <button className="view-details">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    {/* Kerala Tour */}
+    <div className="tour-card">
+      <img
+        src="/image/kerala_tour.jpg"
+        alt="Kerala Backwaters Tour"
+      />
+
+      <div className="tour-info">
+        <h3>Kerala Backwaters Tour</h3>
+
+        <p className="tour-duration">
+          🗓️ 5 Days / 4 Nights
+        </p>
+
+        <p>
+          Relax amidst peaceful backwaters, lush greenery
+          and the natural beauty of God's Own Country.
+        </p>
+
+        <div className="tour-bottom">
+          <span className="tour-price">₹22,000</span>
+
+          <button className="view-details">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
     </div>
   )
 }
