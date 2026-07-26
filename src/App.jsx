@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import TourDetails from './TourDetails'
 import RajasthanTour from './RajasthanTour'
 import KeralaTour from './KeralaTour'
-
+import Blog from './Blog'
+import AboutUs from './AboutUs'
 function Home() {
   return (
     <div className="app">
@@ -23,8 +24,8 @@ function Home() {
           <a href="#">Tours</a>
           <a href="#">Flights</a>
           <a href="#">Hotels</a>
-          <a href="#">Blog</a>
-          <a href="#">About Us</a>
+          <a href="/blog">Blog</a>
+          <a href="/about-us">About Us</a>
         </div>
 
         {/* AI Planner & Login */}
@@ -316,6 +317,8 @@ function App() {
   path="/kerala-tour"
   element={<KeralaTour />}
 />
+<Route path="/blog" element={<Blog />} />
+<Route path="/about-us" element={<AboutUs />} />
 
       </Routes>
 
