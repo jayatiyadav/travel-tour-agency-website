@@ -1,6 +1,10 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import TourDetails from './TourDetails'
+import RajasthanTour from './RajasthanTour'
+import KeralaTour from './KeralaTour'
 
-function App() {
+function Home() {
   return (
     <div className="app">
 
@@ -36,6 +40,7 @@ function App() {
 
       </nav>
 
+
       {/* Hero Section */}
       <section className="hero">
 
@@ -46,16 +51,26 @@ function App() {
         />
 
         <div className="hero-text">
-          <button 
-          className="explore-button"
-          onClick={() =>
-    document.getElementById("bharat-bhraman").scrollIntoView({
-        behavior: "smooth"})
-    }>Explore India</button>
+
+          <button
+            className="explore-button"
+            onClick={() =>
+              document
+                .getElementById("bharat-bhraman")
+                .scrollIntoView({
+                  behavior: "smooth"
+                })
+            }
+          >
+            Explore India
+          </button>
+
           <h1>Discover The Soul Of Bharat</h1>
+
         </div>
 
       </section>
+
 
       {/* Search Section */}
       <section className="search-section">
@@ -75,155 +90,236 @@ function App() {
         </button>
 
       </section>
-<section id="bharat-bhraman" className="bharat-bhraman">
-  <h2>भारत भ्रमण</h2>
 
-  <p>
-    From the majestic Himalayas to the serene southern coasts,
-    <br />
-    discover destinations that tell the story of Bharat.
-  </p>
 
-  <div className="destination-grid">
-    <div className="destination-card">
-      <img src="/image/kashmir.png" alt="Kashmir" />
-      <p>Paradise in the North</p>
-    </div>
+      {/* Bharat Bhraman Section */}
+      <section
+        id="bharat-bhraman"
+        className="bharat-bhraman"
+      >
 
-    <div className="destination-card">
-      <img src="/image/rajsthan.png" alt="Rajasthan" />
-      <p>Royal Heritage & Culture</p>
-    </div>
-
-    <div className="destination-card">
-      <img src="/image/varanasi.png" alt="Varanasi" />
-      <p>The Spiritual Heart of India</p>
-    </div>
-
-    <div className="destination-card">
-      <img src="/image/gujrat.png" alt="Gujarat" />
-      <p>A Blend of Heritage & Vibrant Culture</p>
-    </div>
-
-    <div className="destination-card">
-      <img src="/image/kerala.png" alt="Kerala" />
-      <p>Nature, Backwaters & Serenity</p>
-    </div>
-
-    <div className="destination-card">
-      <img src="/image/goa.png" alt="Goa" />
-      <p>Beaches, Sunsets & Vibrant Vibes</p>
-    </div>
-  </div>
-
-  <button className="explore-all">
-    Explore all →
-  </button>
-</section>
-{/* Popular Tours Section */}
-<section className="popular-tours">
-
-  <h2>Popular Tours</h2>
-
-  <p className="popular-tours-subtitle">
-    Explore India's most loved journeys
-  </p>
-
-  <div className="tour-grid">
-
-    {/* Kashmir Tour */}
-    <div className="tour-card">
-      <img
-        src="/image/kashmir_tour.jpg"
-        alt="Kashmir Paradise Tour"
-      />
-
-      <div className="tour-info">
-        <h3>Kashmir Paradise Tour</h3>
-
-        <p className="tour-duration">
-          🗓️ 6 Days / 5 Nights
-        </p>
+        <h2>भारत भ्रमण</h2>
 
         <p>
-          Experience the breathtaking beauty of Kashmir,
-          from serene lakes to majestic mountains.
+          From the majestic Himalayas to the serene southern coasts,
+          <br />
+          discover destinations that tell the story of Bharat.
         </p>
 
-        <div className="tour-bottom">
-          <span className="tour-price">₹25,000</span>
+        <div className="destination-grid">
 
-          <button className="view-details">
-            View Details
-          </button>
+          <div className="destination-card">
+            <img src="/image/kashmir.png" alt="Kashmir" />
+            <p>Paradise in the North</p>
+          </div>
+
+          <div className="destination-card">
+            <img src="/image/rajsthan.png" alt="Rajasthan" />
+            <p>Royal Heritage & Culture</p>
+          </div>
+
+          <div className="destination-card">
+            <img src="/image/varanasi.png" alt="Varanasi" />
+            <p>The Spiritual Heart of India</p>
+          </div>
+
+          <div className="destination-card">
+            <img src="/image/gujrat.png" alt="Gujarat" />
+            <p>A Blend of Heritage & Vibrant Culture</p>
+          </div>
+
+          <div className="destination-card">
+            <img src="/image/kerala.png" alt="Kerala" />
+            <p>Nature, Backwaters & Serenity</p>
+          </div>
+
+          <div className="destination-card">
+            <img src="/image/goa.png" alt="Goa" />
+            <p>Beaches, Sunsets & Vibrant Vibes</p>
+          </div>
+
         </div>
-      </div>
-    </div>
+
+        <button className="explore-all">
+          Explore all →
+        </button>
+
+      </section>
 
 
-    {/* Rajasthan Tour */}
-    <div className="tour-card">
-      <img
-        src="/image/rajsthan_tour.jpg"
-        alt="Royal Rajasthan Tour"
-      />
+      {/* Popular Tours Section */}
+      <section className="popular-tours">
 
-      <div className="tour-info">
-        <h3>Royal Rajasthan Tour</h3>
+        <h2>Popular Tours</h2>
 
-        <p className="tour-duration">
-          🗓️ 7 Days / 6 Nights
+        <p className="popular-tours-subtitle">
+          Explore India's most loved journeys
         </p>
 
-        <p>
-          Discover royal palaces, magnificent forts,
-          vibrant culture and the golden desert.
-        </p>
+        <div className="tour-grid">
 
-        <div className="tour-bottom">
-          <span className="tour-price">₹30,000</span>
 
-          <button className="view-details">
-            View Details
-          </button>
+          {/* Kashmir Tour */}
+          <div className="tour-card">
+
+            <img
+              src="/image/kashmir_tour.jpg"
+              alt="Kashmir Paradise Tour"
+            />
+
+            <div className="tour-info">
+
+              <h3>Kashmir Paradise Tour</h3>
+
+              <p className="tour-duration">
+                🗓️ 6 Days / 5 Nights
+              </p>
+
+              <p>
+                Experience the breathtaking beauty of Kashmir,
+                from serene lakes to majestic mountains.
+              </p>
+
+              <div className="tour-bottom">
+
+                <span className="tour-price">
+                  ₹25,000
+                </span>
+
+                <button
+                  className="view-details"
+                  onClick={() =>
+                    window.location.href = "/kashmir-tour"
+                  }
+                >
+                  View Details
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* Rajasthan Tour */}
+          <div className="tour-card">
+
+            <img
+              src="/image/rajsthan_tour.jpg"
+              alt="Royal Rajasthan Tour"
+            />
+
+            <div className="tour-info">
+
+              <h3>Royal Rajasthan Tour</h3>
+
+              <p className="tour-duration">
+                🗓️ 7 Days / 6 Nights
+              </p>
+
+              <p>
+                Discover royal palaces, magnificent forts,
+                vibrant culture and the golden desert.
+              </p>
+
+              <div className="tour-bottom">
+
+                <span className="tour-price">
+                  ₹30,000
+                </span>
+
+                <button className="view-details"
+                 onClick={() => window.location.href = "/rajasthan-tour"}
+>
+                  View Details
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* Kerala Tour */}
+          <div className="tour-card">
+
+            <img
+              src="/image/kerala_tour.jpg"
+              alt="Kerala Backwaters Tour"
+            />
+
+            <div className="tour-info">
+
+              <h3>Kerala Backwaters Tour</h3>
+
+              <p className="tour-duration">
+                🗓️ 5 Days / 4 Nights
+              </p>
+
+              <p>
+                Relax amidst peaceful backwaters, lush greenery
+                and the natural beauty of God's Own Country.
+              </p>
+
+              <div className="tour-bottom">
+
+                <span className="tour-price">
+                  ₹22,000
+                </span>
+
+                <button className="view-details"
+                 onClick={() => window.location.href = "/kerala-tour"}
+                >
+                  View Details
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
-      </div>
+
+      </section>
+
     </div>
+  )
+}
 
 
-    {/* Kerala Tour */}
-    <div className="tour-card">
-      <img
-        src="/image/kerala_tour.jpg"
-        alt="Kerala Backwaters Tour"
-      />
+function App() {
+  return (
+    <BrowserRouter>
 
-      <div className="tour-info">
-        <h3>Kerala Backwaters Tour</h3>
+      <Routes>
 
-        <p className="tour-duration">
-          🗓️ 5 Days / 4 Nights
-        </p>
+        {/* Home Page */}
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-        <p>
-          Relax amidst peaceful backwaters, lush greenery
-          and the natural beauty of God's Own Country.
-        </p>
+        {/* Kashmir Tour Details Page */}
+        <Route
+          path="/kashmir-tour"
+          element={<TourDetails />}
+        />
+        <Route
+  path="/rajasthan-tour"
+  element={<RajasthanTour />}
+/>
 
-        <div className="tour-bottom">
-          <span className="tour-price">₹22,000</span>
+<Route
+  path="/kerala-tour"
+  element={<KeralaTour />}
+/>
 
-          <button className="view-details">
-            View Details
-          </button>
-        </div>
-      </div>
-    </div>
+      </Routes>
 
-  </div>
-
-</section>
-    </div>
+    </BrowserRouter>
   )
 }
 
