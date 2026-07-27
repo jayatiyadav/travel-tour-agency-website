@@ -5,6 +5,7 @@ import RajasthanTour from './RajasthanTour'
 import KeralaTour from './KeralaTour'
 import Blog from './Blog'
 import AboutUs from './AboutUs'
+import ExploreIndia from './ExploreIndia'
 function Home() {
   return (
     <div className="app">
@@ -110,38 +111,39 @@ function Home() {
         <div className="destination-grid">
 
           <div className="destination-card">
-            <img src="/image/kashmir.png" alt="Kashmir" />
+            <img src="/image/kas1.jpg" alt="Kashmir" />
             <p>Paradise in the North</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/rajsthan.png" alt="Rajasthan" />
+            <img src="/image/raj1.jpg" alt="Rajasthan" />
             <p>Royal Heritage & Culture</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/varanasi.png" alt="Varanasi" />
+            <img src="/image/var1.jpg" alt="Varanasi" />
             <p>The Spiritual Heart of India</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/gujrat.png" alt="Gujarat" />
+            <img src="/image/guj1.jpg" alt="Gujarat" />
             <p>A Blend of Heritage & Vibrant Culture</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/kerala.png" alt="Kerala" />
+            <img src="/image/ker1.jpg" alt="Kerala" />
             <p>Nature, Backwaters & Serenity</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/goa.png" alt="Goa" />
+            <img src="/image/goa1.jpg" alt="Goa" />
             <p>Beaches, Sunsets & Vibrant Vibes</p>
           </div>
 
         </div>
 
-        <button className="explore-all">
+        <button className="explore-all" 
+        onClick={() => window.location.href = "/explore-india"}>
           Explore all →
         </button>
 
@@ -319,6 +321,10 @@ function App() {
 />
 <Route path="/blog" element={<Blog />} />
 <Route path="/about-us" element={<AboutUs />} />
+<Route
+  path="/explore-india"
+  element={<ExploreIndia />}
+/>
 
       </Routes>
 
