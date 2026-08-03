@@ -6,6 +6,7 @@ import KeralaTour from './KeralaTour'
 import Blog from './Blog'
 import AboutUs from './AboutUs'
 import ExploreIndia from './ExploreIndia'
+import RajasthanToursList from './RajasthanToursList'
 function Home() {
   return (
     <div className="app">
@@ -111,32 +112,32 @@ function Home() {
         <div className="destination-grid">
 
           <div className="destination-card">
-            <img src="/image/kas1.jpg" alt="Kashmir" />
+            <img src="/image/kashmir.png" alt="Kashmir" />
             <p>Paradise in the North</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/raj1.jpg" alt="Rajasthan" />
+            <img src="/image/rajsthan.png" alt="Rajasthan" />
             <p>Royal Heritage & Culture</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/var1.jpg" alt="Varanasi" />
+            <img src="/image/varanasi.png" alt="Varanasi" />
             <p>The Spiritual Heart of India</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/guj1.jpg" alt="Gujarat" />
+            <img src="/image/gujrat.png" alt="Gujarat" />
             <p>A Blend of Heritage & Vibrant Culture</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/ker1.jpg" alt="Kerala" />
+            <img src="/image/kerala.png" alt="Kerala" />
             <p>Nature, Backwaters & Serenity</p>
           </div>
 
           <div className="destination-card">
-            <img src="/image/goa1.jpg" alt="Goa" />
+            <img src="/image/goa.png" alt="Goa" />
             <p>Beaches, Sunsets & Vibrant Vibes</p>
           </div>
 
@@ -324,6 +325,9 @@ function App() {
 <Route
   path="/explore-india"
   element={<ExploreIndia />}
+/><Route
+  path="/rajasthan-tours"
+  element={<RajasthanToursList />}
 />
 
       </Routes>

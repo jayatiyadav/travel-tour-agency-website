@@ -13,7 +13,7 @@ function ExploreIndia() {
       name: "Rajasthan",
       image: "/image/raj1.jpg",
       description: "Royal Heritage & Culture",
-      path: "/rajasthan-tour"
+      path: "/rajasthan-tours"
     },
     {
       name: "Varanasi",

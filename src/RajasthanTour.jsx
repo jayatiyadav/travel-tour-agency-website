@@ -27,9 +27,9 @@ function RajasthanTour() {
       {/* Back Button */}
       <button
         className="back-button"
-        onClick={() => navigate('/')}
+        onClick={() => navigate(-1)}
       >
-        ← Back to Home
+        ← Back 
       </button>
 
 
