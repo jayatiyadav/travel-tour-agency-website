@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState } from "react"
 import TourDetails from './TourDetails'
 import RajasthanTour from './RajasthanTour'
 import KeralaTour from './KeralaTour'
@@ -7,7 +8,10 @@ import Blog from './Blog'
 import AboutUs from './AboutUs'
 import ExploreIndia from './ExploreIndia'
 import RajasthanToursList from './RajasthanToursList'
+import Login from './login'
 function Home() {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div className="app">
 
@@ -36,9 +40,12 @@ function Home() {
             🤖 Plan with Saarthi AI
           </button>
 
-          <button className="login-button">
-            👤
-          </button>
+          <button
+  className="login-button"
+  onClick={() => setShowLogin(true)}
+>
+  👤
+</button>
         </div>
 
       </nav>
@@ -161,6 +168,7 @@ function Home() {
         </p>
 
         <div className="tour-grid">
+          
 
 
           {/* Kashmir Tour */}
@@ -289,9 +297,20 @@ function Home() {
 
       </section>
 
+    
+          
+
+      {showLogin && (
+        <Login onClose={() => setShowLogin(false)} />
+      )}
+
     </div>
-  )
+  );
 }
+    
+  
+
+
 
 
 function App() {
@@ -329,6 +348,7 @@ function App() {
   path="/rajasthan-tours"
   element={<RajasthanToursList />}
 />
+
 
       </Routes>
 

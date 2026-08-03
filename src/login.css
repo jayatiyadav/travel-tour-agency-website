@@ -1,0 +1,72 @@
+.login-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.login-modal{
+    width:380px;
+    background:#fff;
+    border-radius:16px;
+    padding:35px;
+    position:relative;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    border:  1px solid #082d6b;
+    border-radius: 5px;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+     color:#082d6b;
+
+}
+
+.login-modal h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#082d6b;
+}
+
+.login-input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.login-btn{
+    width:100%;
+    padding:12px;
+    background:#082d6b;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.login-btn:hover{
+    background:#082d6b;
+}
+
+.signup-text{
+    margin-top:18px;
+    text-align:center;
+}
+
+.signup-text span{
+    color:#082d6b;
+    font-weight:bold;
+    cursor:pointer;
+}
