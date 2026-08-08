@@ -9,8 +9,10 @@ import AboutUs from './AboutUs'
 import ExploreIndia from './ExploreIndia'
 import RajasthanToursList from './RajasthanToursList'
 import Login from './login'
+import SaarthiAI from "./SaarthiAI";
 function Home() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showSaarthi, setShowSaarthi] = useState(false);
 
   return (
     <div className="app">
@@ -36,8 +38,10 @@ function Home() {
 
         {/* AI Planner & Login */}
         <div className="nav-right">
-          <button className="ai-button">
+          <button className="ai-button"
+          onClick={() => setShowSaarthi(true)}>
             🤖 Plan with Saarthi AI
+            
           </button>
 
           <button
@@ -303,7 +307,9 @@ function Home() {
       {showLogin && (
         <Login onClose={() => setShowLogin(false)} />
       )}
-
+{showSaarthi && (
+  <SaarthiAI onClose={() => setShowSaarthi(false)} />
+)}
     </div>
   );
 }
