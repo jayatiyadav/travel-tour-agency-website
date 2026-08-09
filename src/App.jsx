@@ -9,10 +9,13 @@ import AboutUs from './AboutUs'
 import ExploreIndia from './ExploreIndia'
 import RajasthanToursList from './RajasthanToursList'
 import Login from './login'
+import Signup from "./Signup"
 import SaarthiAI from "./SaarthiAI";
+
 function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSaarthi, setShowSaarthi] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
   return (
     <div className="app">
@@ -305,8 +308,23 @@ function Home() {
           
 
       {showLogin && (
-        <Login onClose={() => setShowLogin(false)} />
-      )}
+  <Login
+    onClose={() => setShowLogin(false)}
+    onSignup={() => {
+      setShowLogin(false);
+      setShowSignup(true);
+    }}
+  />
+)}
+{showSignup && (
+  <Signup
+    onClose={() => setShowSignup(false)}
+    onLogin={() => {
+      setShowSignup(false);
+      setShowLogin(true);
+    }}
+  />
+)}
 {showSaarthi && (
   <SaarthiAI onClose={() => setShowSaarthi(false)} />
 )}

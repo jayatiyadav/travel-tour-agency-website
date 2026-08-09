@@ -1,6 +1,6 @@
 import "./login.css";
 
-function Login({ onClose }) {
+function Login({ onClose, onSignup }) {
   return (
     <div className="login-overlay">
       <div className="login-modal">
@@ -28,7 +28,7 @@ function Login({ onClose }) {
         </button>
 
         <p className="signup-text">
-          Don't have an account? <span>Sign Up</span>
+          Don't have an account? <span onClick={onSignup}>Sign Up</span>
         </p>
 
       </div>

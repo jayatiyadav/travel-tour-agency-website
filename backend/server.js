@@ -1,7 +1,10 @@
 const tours = require("./tours");
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 require("dotenv").config({ path: "../.env" });
+const User = require("./models/User");
+const bcrypt = require("bcryptjs");
 
 const { GoogleGenAI } = require("@google/genai");
 
@@ -11,6 +14,15 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = 5000;
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("MongoDB connected successfully ✅");
+  })
+  .catch((error) => {
+    console.error("MongoDB connection failed ❌", error);
+  });
+
 
 // Gemini client
 const ai = new GoogleGenAI({
@@ -23,6 +35,61 @@ app.get("/", (req, res) => {
     message: "Saarthi AI Backend is running 🚀",
   });
 });
+// User Signup
+app.post("/api/auth/signup", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        error: "Name, email and password are required",
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(409).json({
+        error: "Email already registered",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    await user.save();
+
+    res.status(201).json({
+      message: "Account created successfully 🎉",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+
+  } catch (error) {
+    console.error("Signup Error:", error);
+
+    res.status(500).json({
+      error: "Unable to create account",
+    });
+  }
+});
+
+
+// Get all tours
+app.get("/api/tours", (req, res) => {
+  res.json(tours);
+});
+`
+`
+   
 // Get all tours
 app.get("/api/tours", (req, res) => {
   res.json(tours);
