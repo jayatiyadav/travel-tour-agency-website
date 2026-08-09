@@ -1,3 +1,4 @@
+const tours = require("./tours");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config({ path: "../.env" });
@@ -22,7 +23,25 @@ app.get("/", (req, res) => {
     message: "Saarthi AI Backend is running 🚀",
   });
 });
+// Get all tours
+app.get("/api/tours", (req, res) => {
+  res.json(tours);
+});
 
+// Get single tour
+app.get("/api/tours/:id", (req, res) => {
+  const tour = tours.find(
+    (tour) => tour.id === parseInt(req.params.id)
+  );
+
+  if (!tour) {
+    return res.status(404).json({
+      error: "Tour not found",
+    });
+  }
+
+  res.json(tour);
+});
 // Saarthi AI Chat
 app.post("/api/chat", async (req, res) => {
   try {
@@ -33,38 +52,39 @@ app.post("/api/chat", async (req, res) => {
         error: "Message is required",
       });
     }
-
+const tourData = JSON.stringify(tours);
     const prompt = `
-You are Saarthi AI, the personal travel assistant for Bhramanam,
-an India-focused travel website.
+You are Saarthi AI, the official travel assistant for Bhramanam.
 
-Your personality:
-- Friendly
-- Helpful
-- Warm
-- Professional
-- Concise but useful
+IMPORTANT RULE:
+You MUST use ONLY the official Bhramanam tour data provided below
+when answering questions about Bhramanam tours.
 
-You help users plan trips across India.
+OFFICIAL BHRAMANAM TOURS:
+${tourData}
 
-You can help with:
-- Destinations
-- Itineraries
-- Trip duration
-- Budget planning
-- Places to visit
-- Food suggestions
-- Travel tips
-- Best time to visit
+STRICT RULES:
+1. Never invent or create a Bhramanam tour.
+2. Never invent a Bhramanam tour name.
+3. Never invent a Bhramanam price.
+4. Never invent a Bhramanam duration.
+5. Never claim that a tour is offered by Bhramanam unless it exists
+   in the official tour data.
+6. If a requested tour or destination is not available in the data,
+   clearly say that it is not currently available.
+7. You may provide general travel suggestions, but clearly label them
+   as general suggestions and NOT as official Bhramanam tours.
 
-Always remember that Bhramanam focuses on travel within India.
+Be friendly, helpful, warm and professional.
+
+Bhramanam focuses on travel within India.
 
 User message:
 ${message}
 `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash",
+      model: "gemini-3.5-flash-lite",
       contents: prompt,
     });
 

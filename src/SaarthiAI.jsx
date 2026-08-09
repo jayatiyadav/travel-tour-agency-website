@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import "./saarthi.css";
 
 function SaarthiAI({ onClose }) {
@@ -97,7 +98,7 @@ function SaarthiAI({ onClose }) {
             key={index}
             className={`message ${message.sender}`}
           >
-            {message.text}
+            <ReactMarkdown>{message.text}</ReactMarkdown>
           </div>
         ))}
 

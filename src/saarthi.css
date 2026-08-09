@@ -110,3 +110,30 @@
   cursor: pointer;
   font-size: 18px;
 }
+.message p {
+  margin: 0 0 10px;
+}
+
+.message p:last-child {
+  margin-bottom: 0;
+}
+
+.message strong {
+  font-weight: 700;
+}
+
+.message ul,
+.message ol {
+  margin: 8px 0;
+  padding-left: 22px;
+}
+
+.message li {
+  margin-bottom: 5px;
+}
+
+.message h1,
+.message h2,
+.message h3 {
+  margin: 8px 0;
+}
