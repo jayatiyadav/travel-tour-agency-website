@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import TourDetails from './TourDetails'
 import RajasthanTour from './RajasthanTour'
 import KeralaTour from './KeralaTour'
@@ -11,11 +11,26 @@ import RajasthanToursList from './RajasthanToursList'
 import Login from './login'
 import Signup from "./Signup"
 import SaarthiAI from "./SaarthiAI";
-
+import AdminDashboard from "./AdminDashboard";
 function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSaarthi, setShowSaarthi] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+    const [tours, setTours] = useState([]);
+  const [loadingTours, setLoadingTours] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/tours")
+      .then((res) => res.json())
+      .then((data) => {
+        setTours(data);
+        setLoadingTours(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch tours:", error);
+        setLoadingTours(false);
+      });
+  }, []);
 
   return (
     <div className="app">
@@ -175,132 +190,68 @@ function Home() {
         </p>
 
         <div className="tour-grid">
-          
 
+  {loadingTours ? (
+    <p>Loading tours...</p>
+  ) : tours.length === 0 ? (
+    <p>No tours available.</p>
+  ) : (
+    tours.map((tour) => (
+      <div className="tour-card" key={tour._id}>
 
-          {/* Kashmir Tour */}
-          <div className="tour-card">
+        <img
+          src={
+            tour.destination === "Kashmir"
+              ? "/image/kashmir_tour.jpg"
+              : tour.destination === "Rajasthan"
+              ? "/image/rajsthan_tour.jpg"
+              : "/image/kerala_tour.jpg"
+          }
+          alt={tour.name}
+        />
 
-            <img
-              src="/image/kashmir_tour.jpg"
-              alt="Kashmir Paradise Tour"
-            />
+        <div className="tour-info">
 
-            <div className="tour-info">
+          <h3>{tour.name}</h3>
 
-              <h3>Kashmir Paradise Tour</h3>
+          <p className="tour-duration">
+            🗓️ {tour.duration}
+          </p>
 
-              <p className="tour-duration">
-                🗓️ 6 Days / 5 Nights
-              </p>
+          <p>
+            {tour.description}
+          </p>
 
-              <p>
-                Experience the breathtaking beauty of Kashmir,
-                from serene lakes to majestic mountains.
-              </p>
+          <div className="tour-bottom">
 
-              <div className="tour-bottom">
+            <span className="tour-price">
+              ₹{tour.price.toLocaleString("en-IN")}
+            </span>
 
-                <span className="tour-price">
-                  ₹25,000
-                </span>
-
-                <button
-                  className="view-details"
-                  onClick={() =>
-                    window.location.href = "/kashmir-tour"
-                  }
-                >
-                  View Details
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* Rajasthan Tour */}
-          <div className="tour-card">
-
-            <img
-              src="/image/rajsthan_tour.jpg"
-              alt="Royal Rajasthan Tour"
-            />
-
-            <div className="tour-info">
-
-              <h3>Royal Rajasthan Tour</h3>
-
-              <p className="tour-duration">
-                🗓️ 7 Days / 6 Nights
-              </p>
-
-              <p>
-                Discover royal palaces, magnificent forts,
-                vibrant culture and the golden desert.
-              </p>
-
-              <div className="tour-bottom">
-
-                <span className="tour-price">
-                  ₹30,000
-                </span>
-
-                <button className="view-details"
-                 onClick={() => window.location.href = "/rajasthan-tour"}
->
-                  View Details
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* Kerala Tour */}
-          <div className="tour-card">
-
-            <img
-              src="/image/kerala_tour.jpg"
-              alt="Kerala Backwaters Tour"
-            />
-
-            <div className="tour-info">
-
-              <h3>Kerala Backwaters Tour</h3>
-
-              <p className="tour-duration">
-                🗓️ 5 Days / 4 Nights
-              </p>
-
-              <p>
-                Relax amidst peaceful backwaters, lush greenery
-                and the natural beauty of God's Own Country.
-              </p>
-
-              <div className="tour-bottom">
-
-                <span className="tour-price">
-                  ₹22,000
-                </span>
-
-                <button className="view-details"
-                 onClick={() => window.location.href = "/kerala-tour"}
-                >
-                  View Details
-                </button>
-
-              </div>
-
-            </div>
+            <button
+              className="view-details"
+              onClick={() => {
+                if (tour.destination === "Kashmir") {
+                  window.location.href = "/kashmir-tour";
+                } else if (tour.destination === "Rajasthan") {
+                  window.location.href = "/rajasthan-tour";
+                } else if (tour.destination === "Kerala") {
+                  window.location.href = "/kerala-tour";
+                }
+              }}
+            >
+              View Details
+            </button>
 
           </div>
 
         </div>
+
+      </div>
+    ))
+  )}
+
+</div>
 
       </section>
 
@@ -371,6 +322,10 @@ function App() {
 /><Route
   path="/rajasthan-tours"
   element={<RajasthanToursList />}
+/>
+<Route
+  path="/admin"
+  element={<AdminDashboard />}
 />
 
 

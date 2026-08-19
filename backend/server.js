@@ -394,6 +394,125 @@ app.get("/api/hotels", async (req, res) => {
   }
 });
 // =======================
+// ADD HOTEL - ADMIN
+// =======================
+
+app.post(
+  "/api/hotels",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const {
+        name,
+        city,
+        pricePerNight,
+        rating,
+        description,
+        image,
+      } = req.body;
+
+      if (!name || !city || !pricePerNight) {
+        return res.status(400).json({
+          error: "Name, city and pricePerNight are required",
+        });
+      }
+
+      const hotel = new Hotel({
+        name,
+        city,
+        pricePerNight,
+        rating: rating || 4,
+        description: description || "",
+        image: image || "",
+      });
+
+      await hotel.save();
+
+      res.status(201).json({
+        message: "Hotel added successfully 🎉",
+        hotel,
+      });
+    } catch (error) {
+      console.error("Add Hotel Error:", error);
+
+      res.status(500).json({
+        error: "Unable to add hotel",
+      });
+    }
+  }
+);
+
+// =======================
+// UPDATE HOTEL - ADMIN
+// =======================
+
+app.put(
+  "/api/hotels/:id",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const hotel = await Hotel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
+      if (!hotel) {
+        return res.status(404).json({
+          error: "Hotel not found",
+        });
+      }
+
+      res.json({
+        message: "Hotel updated successfully ✅",
+        hotel,
+      });
+    } catch (error) {
+      console.error("Update Hotel Error:", error);
+
+      res.status(500).json({
+        error: "Unable to update hotel",
+      });
+    }
+  }
+);
+
+// =======================
+// DELETE HOTEL - ADMIN
+// =======================
+
+app.delete(
+  "/api/hotels/:id",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const hotel = await Hotel.findByIdAndDelete(req.params.id);
+
+      if (!hotel) {
+        return res.status(404).json({
+          error: "Hotel not found",
+        });
+      }
+
+      res.json({
+        message: "Hotel deleted successfully 🗑️",
+      });
+    } catch (error) {
+      console.error("Delete Hotel Error:", error);
+
+      res.status(500).json({
+        error: "Unable to delete hotel",
+      });
+    }
+  }
+);
+// =======================
 // FLIGHTS
 // =======================
 
@@ -409,7 +528,126 @@ app.get("/api/flights", async (req, res) => {
     });
   }
 });
+// =======================
+// ADD FLIGHT - ADMIN
+// =======================
 
+app.post(
+  "/api/flights",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const {
+        airline,
+        from,
+        to,
+        departureTime,
+        arrivalTime,
+        price,
+      } = req.body;
+
+      if (!airline || !from || !to || !departureTime || !arrivalTime || !price) {
+        return res.status(400).json({
+          error:
+            "Airline, from, to, departureTime, arrivalTime and price are required",
+        });
+      }
+
+      const flight = new Flight({
+        airline,
+        from,
+        to,
+        departureTime,
+        arrivalTime,
+        price,
+      });
+
+      await flight.save();
+
+      res.status(201).json({
+        message: "Flight added successfully 🎉",
+        flight,
+      });
+    } catch (error) {
+      console.error("Add Flight Error:", error);
+
+      res.status(500).json({
+        error: "Unable to add flight",
+      });
+    }
+  }
+);
+
+// =======================
+// UPDATE FLIGHT - ADMIN
+// =======================
+
+app.put(
+  "/api/flights/:id",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const flight = await Flight.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
+      if (!flight) {
+        return res.status(404).json({
+          error: "Flight not found",
+        });
+      }
+
+      res.json({
+        message: "Flight updated successfully ✅",
+        flight,
+      });
+    } catch (error) {
+      console.error("Update Flight Error:", error);
+
+      res.status(500).json({
+        error: "Unable to update flight",
+      });
+    }
+  }
+);
+
+// =======================
+// DELETE FLIGHT - ADMIN
+// =======================
+
+app.delete(
+  "/api/flights/:id",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const flight = await Flight.findByIdAndDelete(req.params.id);
+
+      if (!flight) {
+        return res.status(404).json({
+          error: "Flight not found",
+        });
+      }
+
+      res.json({
+        message: "Flight deleted successfully 🗑️",
+      });
+    } catch (error) {
+      console.error("Delete Flight Error:", error);
+
+      res.status(500).json({
+        error: "Unable to delete flight",
+      });
+    }
+  }
+);
 // =======================
 // ADD TOUR - ADMIN
 // =======================
@@ -626,7 +864,30 @@ app.delete(
     }
   }
 );
+// =======================
+// GET ALL BOOKINGS - ADMIN
+// =======================
 
+app.get(
+  "/api/admin/bookings",
+  authenticateToken,
+  requireAdmin,
+  async (req, res) => {
+    try {
+      const bookings = await Booking.find()
+        .populate("userId", "name email")
+        .sort({ createdAt: -1 });
+
+      res.json(bookings);
+    } catch (error) {
+      console.error("Get All Bookings Error:", error);
+
+      res.status(500).json({
+        error: "Unable to fetch all bookings",
+      });
+    }
+  }
+);
 // =======================
 // SAARTHI AI
 // =======================
